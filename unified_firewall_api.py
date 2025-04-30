@@ -77,12 +77,14 @@ def call_gemma(nl: str) -> dict:
         "model":  GEMMA_MODEL,
         "system": (
             "You are a network firewall assistant. "
+            "if valid port range(0 to 65535) then continue else throw ERROR"
             "Convert the user's instruction into exactly one JSON object "
             "with keys: [action, ip, port]. "
             "action must be one of: block, allow, remove, unblock, list. "
             "ip must be an IPv4 string or empty. "
             "port must be a TCP port string or 'all'. "
             "Respond with pure JSON and no extra text."
+            "check for valid port range if not then throw Error: invalid-port"
         ),
         "prompt": nl,
         "stream": False
